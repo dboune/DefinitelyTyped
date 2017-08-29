@@ -1,6 +1,8 @@
 // Type definitions for hapi 16.1
 // Project: https://github.com/hapijs/hapi
-// Definitions by: Jason Swearingen <https://github.com/jasonswearingen>, AJP <https://github.com/AJamesPhillips>
+// Definitions by: Jason Swearingen <https://github.com/jasonswearingen>,
+//                 AJP <https://github.com/AJamesPhillips>
+//                 Damian Bouné <https://github.com/dboune>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 // TypeScript Version: 2.3
 
@@ -1930,13 +1932,13 @@ export class Request extends Podium {
     plugins: PluginsStates;
     /** an object where each key is the name assigned by a route prerequisites function. The values are the raw values provided to the continuation function as argument. For the wrapped response object, use responses. */
     pre: Object;
-    /** the response object when set. The object can be modified but must not be assigned another object. To replace the response with another from within an extension point, use reply(response) to override with a different response. Contains null when no response has been set (e.g. when a request terminates prematurely when the client disconnects). */
-    response: Response | null;
+    /** the response object when set. The object can be modified but must not be assigned another object. To replace the response with another from within an extension point, use reply(response) to override with a different response. May contain a BoomError, which can be tested with isBoom(). Contains null when no response has been set (e.g. when a request terminates prematurely when the client disconnects). */
+    response: Response | Boom.BoomError | null;
     /** same as pre but represented as the response object created by the pre method. */
     preResponses: Object;
     /**
-     * by default the object outputted from [node's URL parse()](https://nodejs.org/docs/latest/api/url.html#url_urlobject_query) method. 
-     * Might also be set indirectly via [request.setUrl](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/17354#requestseturlurl-striptrailingslash) in which case it may be 
+     * by default the object outputted from [node's URL parse()](https://nodejs.org/docs/latest/api/url.html#url_urlobject_query) method.
+     * Might also be set indirectly via [request.setUrl](https://github.com/DefinitelyTyped/DefinitelyTyped/pull/17354#requestseturlurl-striptrailingslash) in which case it may be
      * a string (if url is set to an object with the query attribute as an unparsed string).
      */
     query: any;
